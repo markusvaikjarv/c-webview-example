@@ -4,8 +4,8 @@
 #include <unistd.h>
 #include <limits.h>
 #define PATH_MAX 4096
-struct webview counter = {
-    .title = "Counter",
+struct webview example = {
+    .title = "Example",
     .width = 600,
     .height = 250,
     .debug = 1,
@@ -24,11 +24,11 @@ int main() {
   strcat(path, cwd);
   strcat(path, "/app.html"); // concatenated path ends up being something like "file:///home/username/directory/c-webview-example/app.html"
 
-  counter.url = path;
+  example.url = path;
   
   printf("%s", path);
-  webview_init(&counter);
-  counter.external_invoke_cb = open_url; //open_url is the name of the function invoked from JS
-  while (webview_loop(&counter, 1) == 0); // starts rendering the front-end
+  webview_init(&example);
+  example.external_invoke_cb = open_url; //  open_url is the name of the function invoked from JS
+  while (webview_loop(&example, 1) == 0); // starts rendering the front-end
   return 0;
 }
